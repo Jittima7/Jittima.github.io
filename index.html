@@ -2,24 +2,70 @@
 <html>
 <head>
     <title>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <h1>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</h1>
 
-<h2>ความเหมือน</h2>
-<p>ทั้งสามภาษาสนับสนุนการเขียนโปรแกรมเชิงวัตถุ (OOP) โดยมีหลักการดังต่อไปนี้:
+<h2>1. ความเหมือนในการเขียนโปรแกรมแบบ OOP</h2>
+<p>ทั้งสามภาษานี้ (Java, C++, Python) รองรับหลักการเขียนโปรแกรมเชิงวัตถุ (OOP) โดยมีโครงสร้างพื้นฐานที่คล้ายกัน:</p>
 <ul>
-    <li><strong>การใช้ Class และ Object:</strong> ทั้งสามภาษาสามารถสร้างคลาสและอ็อบเจ็กต์ได้ เช่นการใช้คลาส <code>Animal</code> และสร้างอ็อบเจ็กต์จากคลาสเหล่านั้น</li>
-    <li><strong>การสืบทอด (Inheritance):</strong> สามารถสืบทอดคลาสได้ เช่น <code>Dog</code> และ <code>Cat</code> สืบทอดจากคลาส <code>Animal</code></li>
-    <li><strong>การพ้องรูป (Polymorphism):</strong> ทั้งสามภาษาสามารถ override method ในคลาสลูก เช่น การ override method <code>sound()</code> ใน <code>Dog</code> และ <code>Cat</code></li>
-    <li><strong>Destructor:</strong> ทั้งสามภาษามี destructor เพื่อทำลายอ็อบเจ็กต์ เช่น <code>delete animal</code>, <code>delete dog</code>, และ <code>delete cat</code></li>
+    <li>สามารถสร้าง <b>Class</b> และ <b>Object</b> ได้</li>
+    <li>รองรับ <b>Inheritance</b> หรือการสืบทอด</li>
+    <li>สามารถใช้ <b>Polymorphism</b> เพื่อให้ Method ที่ชื่อเดียวกันทำงานต่างกันในคลาสที่แตกต่างกัน</li>
+    <li>มีการจัดการ <b>Constructor</b> และ <b>Destructor</b> เพื่อสร้างและลบอ็อบเจ็กต์</li>
 </ul>
-</p>
 
-<h2>ความแตกต่าง</h2>
-<p>ถึงแม้หลักการ OOP จะเหมือนกัน แต่มีข้อแตกต่างบางประการในรายละเอียด:
-<ul>
-    <li><strong>Java:</strong> Java มี garbage collector ที่จัดการการทำลายอ็อบเจ็กต์โดยอัตโนมัติ การสร้างและทำลายอ็อบเจ็กต์ใช้ keyword <code>new</code> และ <code>finalize()</code> ในการทำลาย</li>
-    <li><strong>C++:</strong> C++ ต้องจัดการหน่วยความจำเองผ่าน <code>new</code> และ <code>delete</code> และสนับสนุนการ overload operator รวมถึงมีความยืดหยุ่นสูงในเรื่องการจัดการหน่วยความจำ</li>
-    <li><strong>Python:</strong> Python ใช้ garbage collection เช่นเดียวกับ Java แต่การเขียนโปรแกรมจะกระชับกว่า และการสร้างและทำลายอ็อบเจ็กต์จะจัดการเองผ่านการเรียก <code>__init__()</code> และ
+<h2>2. ความแตกต่างในการเขียนโปรแกรมแบบ OOP</h2>
+
+<h3>Java</h3>
+<p>ในภาษา Java คลาสทั้งหมดจะถูกห่อหุ้มอยู่ในคลาสใหญ่หนึ่งคลาสเสมอ และไม่จำเป็นต้องจัดการการลบวัตถุ (Destructor) เนื่องจาก Java มีระบบ Garbage Collection ที่จะจัดการเรื่องการคืนหน่วยความจำอัตโนมัติ</p>
+<code>
+class Animal {<br>
+    Animal() { System.out.println("create animal"); }<br>
+    void sound() { System.out.println("animal makes a sound"); }<br>
+}<br>
+</code>
+
+<h3>C++</h3>
+<p>ใน C++ เราจำเป็นต้องลบวัตถุที่สร้างขึ้นเองด้วยคำสั่ง <code>delete</code> เนื่องจาก C++ ไม่มี Garbage Collection และมีการใช้ pointer ในการจัดการหน่วยความจำ</p>
+<code>
+class Animal {<br>
+public:<br>
+    Animal() { cout << "create animal" << endl; }<br>
+    virtual void sound() { cout << "animal makes a sound" << endl; }<br>
+    virtual ~Animal() { cout << "delete animal" << endl; }<br>
+};<br>
+</code>
+
+<h3>Python</h3>
+<p>Python มีโครงสร้างที่ง่ายกว่าและสามารถลบวัตถุได้อัตโนมัติเช่นเดียวกับ Java โดยใช้ระบบ Garbage Collection และใช้การย่อมาจาก <code>__del__</code> สำหรับ Destructor</p>
+<code>
+class Animal:<br>
+    def __init__(self):<br>
+        print("create animal")<br>
+    def sound(self):<br>
+        print("animal makes a sound")<br>
+    def __del__(self):<br>
+        print("delete animal")<br>
+</code>
+
+</body>
+</html>
