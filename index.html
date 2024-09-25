@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</title>
+    <title>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</title>
 </head>
 <body>
 
 <h1>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</h1>
-<p></p>
 
-</body>
-</html>
+<h2>ความเหมือน</h2>
+<p>ทั้งสามภาษาสนับสนุนการเขียนโปรแกรมเชิงวัตถุ (OOP) โดยมีหลักการดังต่อไปนี้:
+<ul>
+    <li><strong>การใช้ Class และ Object:</strong> ทั้งสามภาษาสามารถสร้างคลาสและอ็อบเจ็กต์ได้ เช่นการใช้คลาส <code>Animal</code> และสร้างอ็อบเจ็กต์จากคลาสเหล่านั้น</li>
+    <li><strong>การสืบทอด (Inheritance):</strong> สามารถสืบทอดคลาสได้ เช่น <code>Dog</code> และ <code>Cat</code> สืบทอดจากคลาส <code>Animal</code></li>
+    <li><strong>การพ้องรูป (Polymorphism):</strong> ทั้งสามภาษาสามารถ override method ในคลาสลูก เช่น การ override method <code>sound()</code> ใน <code>Dog</code> และ <code>Cat</code></li>
+    <li><strong>Destructor:</strong> ทั้งสามภาษามี destructor เพื่อทำลายอ็อบเจ็กต์ เช่น <code>delete animal</code>, <code>delete dog</code>, และ <code>delete cat</code></li>
+</ul>
+</p>
+
+<h2>ความแตกต่าง</h2>
+<p>ถึงแม้หลักการ OOP จะเหมือนกัน แต่มีข้อแตกต่างบางประการในรายละเอียด:
+<ul>
+    <li><strong>Java:</strong> Java มี garbage collector ที่จัดการการทำลายอ็อบเจ็กต์โดยอัตโนมัติ การสร้างและทำลายอ็อบเจ็กต์ใช้ keyword <code>new</code> และ <code>finalize()</code> ในการทำลาย</li>
+    <li><strong>C++:</strong> C++ ต้องจัดการหน่วยความจำเองผ่าน <code>new</code> และ <code>delete</code> และสนับสนุนการ overload operator รวมถึงมีความยืดหยุ่นสูงในเรื่องการจัดการหน่วยความจำ</li>
+    <li><strong>Python:</strong> Python ใช้ garbage collection เช่นเดียวกับ Java แต่การเขียนโปรแกรมจะกระชับกว่า และการสร้างและทำลายอ็อบเจ็กต์จะจัดการเองผ่านการเรียก <code>__init__()</code> และ
