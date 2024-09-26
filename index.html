@@ -665,7 +665,62 @@ Dog และ Cat ต้อง override method sound() เอง</p>
 }
 </pre>
 
+  
 
+<h2>3. Python</h2>
+    <p>Python, Animal ใช้ ABC (Abstract Base Class) และระบุ method sound() เป็น abstract ด้วยคำสั่ง @abstractmethod Dog และ Cat จะต้อง implement method sound() เอง
+from abc import ABC, abstractmethod</p>
+  
+  <pre>
+<span class="keyword">from</span> <span class="class-name">abc</span> <span class="keyword">import</span> ABC, <span class="keyword">@abstractmethod</span>
+
+<span class="class-name">class</span> <span class="class-name">Animal</span>(<span class="keyword">ABC</span>):
+    <span class="keyword">def</span> __init__(self):
+        <span class="keyword">print</span>(<span class="string">"create animal"</span>)
+
+    <span class="comment"># Abstract method - ไม่มีรายละเอียด</span>  
+    <span class="keyword">@abstractmethod</span>
+    <span class="keyword">def</span> sound(self):
+        <span class="keyword">pass</span>
+
+    <span class="keyword">def</span> __del__(self):
+        <span class="keyword">print</span>(<span class="string">"delete animal"</span>)
+
+<span class="class-name">class</span> <span class="class-name">Dog</span>(<span class="class-name">Animal</span>):
+    <span class="keyword">def</span> __init__(self):
+        <span class="keyword">super</span>().__init__()
+        <span class="keyword">print</span>(<span class="string">"dog"</span>)
+
+    <span class="keyword">def</span> sound(self):
+        <span class="keyword">print</span>(<span class="string">"dog barks"</span>)
+
+    <span class="keyword">def</span> __del__(self):
+        <span class="keyword">print</span>(<span class="string">"delete dog"</span>)
+
+<span class="class-name">class</span> <span class="class-name">Cat</span>(<span class="class-name">Animal</span>):
+    <span class="keyword">def</span> __init__(self):
+        <span class="keyword">super</span>().__init__()
+        <span class="keyword">print</span>(<span class="string">"cat"</span>)
+
+    <span class="keyword">def</span> sound(self):
+        <span class="keyword">print</span>(<span class="string">"cat meows"</span>)
+
+    <span class="keyword">def</span> __del__(self):
+        <span class="keyword">print</span>(<span class="string">"delete cat"</span>)
+
+# a = Animal()  <span class="comment"># ไม่สามารถสร้าง object จาก abstract class</span>
+d = <span class="keyword">Dog</span>()
+d.sound()
+
+c = <span class="keyword">Cat</span>()
+c.sound()
+
+<span class="keyword">del</span> d
+<span class="keyword">del</span> c
+</pre>
+
+  
+  
 
 </body>
 </html>
