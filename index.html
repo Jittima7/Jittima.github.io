@@ -500,6 +500,172 @@ d->sound();  <span class="comment">// dog barks</span>
        Abstract class ถูกใช้เมื่อเราต้องการสร้างโครงสร้างของคลาสที่มีคุณสมบัติบางอย่างร่วมกัน แต่ไม่สามารถกำหนดรายละเอียดของพฤติกรรมทั้งหมดภายใน abstract class เองได้
   </p>
       
+  <h2>หลักการสร้าง Abstract Class</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-family: Arial, sans-serif;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">ภาษา</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">หลักการ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Java</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                ใช้คำสั่ง abstract เพื่อระบุว่า class นั้นเป็น abstract class และ method ที่เป็น abstract จะต้องระบุว่า abstract โดยไม่ใส่รายละเอียดใน method นั้น
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">C++</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                ใช้ pure virtual function (คือ method ที่กำหนดค่าเป็น 0 ) ในการสร้าง method ที่ต้องให้ subclass มา implement
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Python</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                ใช้ ABC (Abstract Base Class) และ @abstractmethod เพื่อระบุ method ที่ต้องให้ subclass implement
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+ <h2>การใช้งาน Abstract Class</h2>
+    <p>
+       การใช้งาน Abstract Class ในตัวอย่างข้อ I ไม่มีการใช้ abstract class อย่างชัดเจน แต่ถ้าเราต้องการให้ Animal เป็น abstract class เราสามารถเปลี่ยนให้มันเป็น abstract class ได้ เพื่อบังคับให้คลาสลูกอย่าง Dog และ Cat ต้อง implement method sound() เอง
+      </p>
+  
+  <p><strong>  ตัวอย่าง:</strong></p>
+		<p> การทำให้ Animal เป็น Abstract Class ในแต่ละภาษา </p>
+  
+  <h2>1. Java</h2>
+    <p>class Animal ถูกกำหนดเป็น abstract และ method sound() เป็น method abstract ที่ไม่มีรายละเอียดในตัวมันเอง
+Dog และ Cat จะต้อง override method sound() ด้วยพฤติกรรมเฉพาะของมันเอง</p>
+    
+  
+    <pre>
+<span class="keyword">abstract</span> <span class="class-name">class</span> <span class="class-name">Animal</span> {
+    <span class="keyword">public</span> <span class="class-name">Animal</span>() {
+        <span class="keyword">System.out.println</span>(<span class="string">"create animal"</span>);
+    }
+    <span class="comment">// Abstract method - ไม่มีรายละเอียด ต้องให้ subclass implement</span>
+    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> sound();
+
+    <span class="keyword">protected</span> <span class="keyword">void</span> finalize() <span class="keyword">throws</span> <span class="class-name">Throwable</span> {
+        <span class="keyword">System.out.println</span>(<span class="string">"delete animal"</span>);
+    }
+}
+
+<span class="class-name">class</span> <span class="class-name">Dog</span> <span class="keyword">extends</span> <span class="class-name">Animal</span> {
+    <span class="keyword">public</span> <span class="class-name">Dog</span>() {
+        <span class="keyword">System.out.println</span>(<span class="string">"dog"</span>);
+    }
+
+    <span class="keyword">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        <span class="keyword">System.out.println</span>(<span class="string">"dog barks"</span>);
+    }
+
+    <span class="keyword">protected</span> <span class="keyword">void</span> finalize() <span class="keyword">throws</span> <span class="class-name">Throwable</span> {
+        <span class="keyword">System.out.println</span>(<span class="string">"delete dog"</span>);
+    }
+}
+
+<span class="class-name">class</span> <span class="class-name">Cat</span> <span class="keyword">extends</span> <span class="class-name">Animal</span> {
+    <span class="keyword">public</span> <span class="class-name">Cat</span>() {
+        <span class="keyword">System.out.println</span>(<span class="string">"cat"</span>);
+    }
+
+    <span class="keyword">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        <span class="keyword">System.out.println</span>(<span class="string">"cat meows"</span>);
+    }
+
+    <span class="keyword">protected</span> <span class="keyword">void</span> finalize() <span class="keyword">throws</span> <span class="class-name">Throwable</span> {
+        <span class="keyword">System.out.println</span>(<span class="string">"delete cat"</span>);
+    }
+}
+
+<span class="class-name">public</span> <span class="class-name">class</span> <span class="class-name">Main</span> {
+    <span class="keyword">public static void</span> <span class="class-name">main</span>(<span class="class-name">String[]</span> <span class="keyword">args</span>) {
+        <span class="comment">// Animal a = new Animal();  // ไม่สามารถสร้าง object จาก abstract class</span>
+        <span class="class-name">Dog</span> d = <span class.keyword>new</span> <span class="class-name">Dog</span>();
+        d.sound();
+        
+        <span class="class-name">Cat</span> c = <span class="keyword">new</span> <span class="class-name">Cat</span>();
+        c.sound();
+    }
+}
+</pre>
+
+
+    <h2>2. C++</h2>
+    <p>ใน C++, Animal มี method sound() เป็น pure virtual function <code>(virtual void sound() = 0;)</code>ทำให้ Animal เป็น abstract class
+Dog และ Cat ต้อง override method sound() เอง</p>
+          
+  <pre>
+<span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="keyword">std;</span>
+
+<span class="class-name">class</span> <span class="class-name">Animal</span> {
+<span class="keyword">public</span>:
+    <span class="class-name">Animal</span>() {
+        <span class="keyword">cout</span> << <span class="string">"create animal"</span> << <span class="keyword">endl</span>;
+    }
+   <span class="comment"> // Pure virtual function ทำให้ Animal เป็น abstract class</span> 
+    <span class="keyword">virtual void</span> sound() = <span class="keyword">0</span>;
+
+    <span class="keyword">virtual</span> <span class="class-name">~Animal</span>() {
+        <span class="keyword">cout</span> << <span class="string">"delete animal"</span> << <span class="keyword">endl</span>;
+    }
+};
+
+<span class="class-name">class</span> <span class="class-name">Dog</span> : <span class="keyword">public</span> <span class="class-name">Animal</span> {
+<span class="keyword">public</span>:
+    <span class="class-name">Dog</span>() {
+        <span class="keyword">cout</span> << <span class="string">"dog"</span> << <span class="keyword">endl</span>;
+    }
+
+    <span class="keyword">void</span> sound() <span class="keyword">override</span> {
+        <span class="keyword">cout</span> << <span class="string">"dog barks"</span> << <span class="keyword">endl</span>;
+    }
+
+    <span class="keyword">~Dog</span>() {
+        <span class="keyword">cout</span> << <span class="string">"delete dog"</span> << <span class="keyword">endl</span>;
+    }
+};
+
+<span class="class-name">class</span> <span class="class-name">Cat</span> : <span class="keyword">public</span> <span class="class-name">Animal</span> {
+<span class="keyword">public</span>:
+    <span class="class-name">Cat</span>() {
+        <span class="keyword">cout</span> << <span class="string">"cat"</span> << <span class="keyword">endl</span>;
+    }
+
+    <span class="keyword">void</span> sound() <span class="keyword">override</span> {
+        <span class="keyword">cout</span> << <span class="string">"cat meows"</span> << <span class="keyword">endl</span>;
+    }
+
+    <span class="keyword">~Cat</span>() {
+        <span class="keyword">cout</span> << <span class="string">"delete cat"</span> << <span class="keyword">endl</span>;
+    }
+};
+
+<span class="keyword">int</span> <span class="class-name">main</span>() {
+    <span class="comment">// Animal* a = new Animal();  // ไม่สามารถสร้าง object จาก abstract class</span>
+    <span class="class-name">Dog</span>* d = <span class="keyword">new</span> <span class="class-name">Dog</span>();
+    d-&gt;sound();
+    
+    <span class="class-name">Cat</span>* c = <span class="keyword">new</span> <span class="class-name">Cat</span>();
+    c-&gt;sound();
+    
+    <span class="keyword">delete</span> d;
+    <span class="keyword">delete</span> c;
+
+    <span class="keyword">return</span> <span class="keyword">0</span>;
+}
+</pre>
+
+
 
 </body>
 </html>
