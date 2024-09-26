@@ -67,6 +67,7 @@
         }
     </style>
 </head>
+    
 <body>
     <h1>I. เขียนโปรแกรมในภาษา Java, C++, Python เปรียบเทียบผลรัน</h1>
 
@@ -138,7 +139,80 @@ class="keyword">void</span> finalize() <span class="keyword">throws</span> Throw
         <span class="comment">// เรียก garbage collector เพื่อให้ finalize ทำงาน</span>
     }
 }
+</code></pre>
+    
+    <h2>2. C++</h2>
+    <p>ใน C++ เราสามารถใช้ destructor (~ClassName) เพื่อจัดการหน่วยความจำได้
+    <code>#include <iostream>using namespace std;</code></p>
+  
+    <pre><code>
+#include &lt;iostream&gt;
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">class</span> <span class="class-name">Animal</span> {
+public:
+    Animal() {
+        cout &lt;&lt; <span class="string">"create animal"</span> &lt;&lt; endl;
+    }
+
+    <span class="keyword">virtual</span> ~Animal() {
+        cout &lt;&lt; <span class="string">"delete animal"</span> &lt;&lt; endl;
+    }
+
+    <span class="keyword">virtual</span> <span class="keyword">void</span> sound() {
+        cout &lt;&lt; <span class="string">"animal makes a sound"</span> &lt;&lt; endl;
+    }
+};
+
+<span class="keyword">class</span> <span class="class-name">Dog</span> : <span class="keyword">public</span> Animal {
+public:
+    Dog() {
+        cout &lt;&lt; <span class="string">"dog"</span> &lt;&lt; endl;
+    }
+
+    ~Dog() {
+        cout &lt;&lt; <span class="string">"delete dog"</span> &lt;&lt; endl;
+    }
+
+    <span class="keyword">void</span> sound() <span class="keyword">override</span> {
+        cout &lt;&lt; <span class="string">"dog barks"</span> &lt;&lt; endl;
+    }
+};
+
+<span class="keyword">class</span> <span class="class-name">Cat</span> : <span class="keyword">public</span> Animal {
+public:
+    Cat() {
+        cout &lt;&lt; <span class="string">"cat"</span> &lt;&lt; endl;
+    }
+
+    ~Cat() {
+        cout &lt;&lt; <span class="string">"delete cat"</span> &lt;&lt; endl;
+    }
+
+    <span class="keyword">void</span> sound() <span class="keyword">override</span> {
+        cout &lt;&lt; <span class="string">"cat meows"</span> &lt;&lt; endl;
+    }
+};
+
+<span class="keyword">int</span> main() {
+    Animal* a = <span class="keyword">new</span> Animal();
+    a->sound();
+    
+    Dog* d = <span class="keyword">new</span> Dog();
+    d->sound();
+    
+    Cat* c = <span class="keyword">new</span> Cat();
+    c->sound();
+    
+    <span class="keyword">delete</span> a;
+    <span class="keyword">delete</span> d;
+    <span class="keyword">delete</span> c;
+    
+    <span class="keyword">return</span> 0;
+}
     </code></pre>
 
+      
+      
 </body>
 </html>
