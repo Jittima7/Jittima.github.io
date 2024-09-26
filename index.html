@@ -274,7 +274,7 @@ c.sound()
 
 <h3>1. Java</h3>
 <p>เมื่อรันโปรแกรมใน Java โดยใช้ <code>System.gc()</code> เพื่อเรียก garbage collector และให้ <code>finalize()</code> ถูกเรียก จะได้ผลลัพธ์ดังนี้:</p>
-<pre><code>
+<pre>
 create animal
 animal makes a sound
 dog
@@ -284,7 +284,7 @@ cat meows
 delete animal
 delete dog
 delete cat
-</code></pre>
+</pre>
 <p><strong>อธิบาย:</strong></p>
 <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
     <p1 style="margin: 0;">create animal, dog, และ cat จะถูกพิมพ์เมื่อเรียก constructor ของแต่ละ class animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound() หลังจากใช้ <code>System.gc()</code> เรียก garbage collector โปรแกรมจะลบ object ที่ถูกสร้างออก ซึ่งจะทำให้ destructor finalize ทำงาน</p1>
@@ -292,7 +292,7 @@ delete cat
 
 <h3>2. C++</h3>
 <p>เมื่อรันโปรแกรมใน C++ โดยใช้คำสั่ง <code>delete</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
-<pre><code>
+<pre>
 create animal
 animal makes a sound
 dog
@@ -302,7 +302,7 @@ cat meows
 delete animal
 delete dog
 delete cat
-</code></pre>
+</pre>
 <p><strong>อธิบาย:</strong></p>
   <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
     <p1 style="margin: 0;">create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object ของแต่ละ class
@@ -312,7 +312,7 @@ animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เ
   
 <h3>3. Python</h3>
 <p>เมื่อรันโปรแกรมใน Python โดยใช้ <code>del</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
-<pre><code>
+<pre>
 create animal
 animal makes a sound
 dog
@@ -322,7 +322,7 @@ cat meows
 delete animal
 delete dog
 delete cat
-</code></pre>
+</pre>
 <p><strong>อธิบาย:</strong></p>
     <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
     <p1 style="margin: 0;">create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object แต่ละ class
