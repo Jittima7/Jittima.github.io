@@ -280,10 +280,9 @@ delete dog
 delete cat
 </code></pre>
 <p><strong>อธิบาย:</strong></p>
-
-   <p>create animal, dog, และ cat จะถูกพิมพ์เมื่อเรียก constructor ของแต่ละ class
-animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
-หลังจากใช้ System.gc() (เรียก garbage collector) โปรแกรมจะลบ object ที่ถูกสร้างออก ซึ่งจะทำให้ destructor (finalize) ทำงาน</p>
+<div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
+    <p style="margin: 0;">create animal, dog, และ cat จะถูกพิมพ์เมื่อเรียก constructor ของแต่ละ class animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound() หลังจากใช้ <code>System.gc()</code> เรียก garbage collector โปรแกรมจะลบ object ที่ถูกสร้างออก ซึ่งจะทำให้ destructor finalize ทำงาน</p>
+</div>
 
 <h3>2. C++</h3>
 <p>เมื่อรันโปรแกรมใน C++ โดยใช้คำสั่ง <code>delete</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
@@ -299,10 +298,12 @@ delete dog
 delete cat
 </code></pre>
 <p><strong>อธิบาย:</strong></p>
-	<p>create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object ของแต่ละ class
+  <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
+    <p style="margin: 0;">create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object ของแต่ละ class
 animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
 เมื่อทำลาย object ด้วย delete a, delete d, และ delete c destructor จะทำงาน และพิมพ์ข้อความที่เกี่ยวข้องกับการลบ object</p>
-
+</div>
+  
 <h3>3. Python</h3>
 <p>เมื่อรันโปรแกรมใน Python โดยใช้ <code>del</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
 <pre><code>
@@ -317,10 +318,44 @@ delete dog
 delete cat
 </code></pre>
 <p><strong>อธิบาย:</strong></p>
-	<p>create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object แต่ละ class
+    <div style="background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 5px;">
+    <p style="margin: 0;">create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object แต่ละ class
 animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
 เมื่อทำลาย object ด้วย del a, del d, และ del c destructor จะถูกเรียก (__del__) ซึ่งทำให้พิมพ์ข้อความที่เกี่ยวข้องกับการลบ object</p>
+</div>
 
-  
+
+  <h2>การเปรียบเทียบผลลัพธ์จากทั้งสามภาษา</h2>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">ภาษา</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">การสร้าง Object</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">การเรียก Method</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">การทำลาย Object (Destructor)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Java</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ constructor ในการพิมพ์ข้อความ</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Method sound() ถูกเรียกใช้ในแต่ละ class</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ garbage collector ผ่าน <code>System.gc()</code> ในการทำลาย object ซึ่งทำให้ <code>finalize()</code> ทำงาน</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">C++</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ constructor ในการพิมพ์ข้อความ</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Method sound() ถูกเรียกใช้ในแต่ละ class</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ <code>delete</code> ในการทำลาย object ซึ่งทำให้ destructor ทำงานโดยตรง</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">Python</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ constructor ในการพิมพ์ข้อความ</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">Method sound() ถูกเรียกใช้ในแต่ละ class</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">ใช้ <code>del</code> เพื่อทำลาย object ซึ่งทำให้ <code>__del__()</code> ทำงานโดยอัตโนมัติ</td>
+        </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
