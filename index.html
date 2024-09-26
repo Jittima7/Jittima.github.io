@@ -6,22 +6,64 @@
     <title>เปรียบเทียบความเหมือนและความแตกต่างในการเขียนโปรแกรมแบบ OOP ด้วยภาษา Java, C++, Python</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #444;
+            font-size: 24px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-x: auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         code {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ccc;
+            font-family: 'Courier New', Courier, monospace;
             display: block;
             white-space: pre-wrap;
         }
 
-        pre {
-            background-color: #f0f0f0;
-            border-left: 4px solid #ccc;
-            padding: 10px;
-            overflow-x: auto;
+        /* สีสำหรับไฮไลต์โค้ด */
+        .keyword {
+            color: #c678dd;
+        }
+
+        .class-name {
+            color: #e5c07b;
+        }
+
+        .string {
+            color: #98c379;
+        }
+
+        .comment {
+            color: #5c6370;
+            font-style: italic;
         }
     </style>
 </head>
@@ -31,72 +73,72 @@
     <h2>1. Java</h2>
     <p>ใน Java ไม่มี destructor เหมือน C++ แต่จะใช้ <code>finalize()</code> เป็นการจัดการที่ไม่เหมือนกันและไม่ได้เรียกอัตโนมัติ แต่จะใช้เพื่อการเปรียบเทียบ</p>
     
-    <pre>
-<code>
-class Animal {
-    public Animal() {
-        System.out.println("create animal");
+    <pre><code>
+<span class="keyword">class</span> <span class="class-name">Animal</span> {
+    <span class="keyword">public</span> Animal() {
+        System.out.println(<span class="string">"create animal"</span>);
     }
 
-    public void sound() {
-        System.out.println("animal makes a sound");
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        System.out.println(<span class="string">"animal makes a sound"</span>);
     }
 
-    protected void finalize() throws Throwable {
-        System.out.println("delete animal");
-    }
-}
-
-class Dog extends Animal {
-    public Dog() {
-        System.out.println("dog");
-    }
-
-    @Override
-    public void sound() {
-        System.out.println("dog barks");
-    }
-
-    protected void finalize() throws Throwable {
-        System.out.println("delete dog");
+    <span class="keyword">protected</span> <span class="keyword">void</span> finalize() <span class="keyword">throws</span> Throwable {
+        System.out.println(<span class="string">"delete animal"</span>);
     }
 }
 
-class Cat extends Animal {
-    public Cat() {
-        System.out.println("cat");
+<span class="keyword">class</span> <span class="class-name">Dog</span> <span class="keyword">extends</span> Animal {
+    <span class="keyword">public</span> Dog() {
+        System.out.println(<span class="string">"dog"</span>);
     }
 
-    @Override
-    public void sound() {
-        System.out.println("cat meows");
+    <span class="keyword">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        System.out.println(<span class="string">"dog barks"</span>);
     }
 
-    protected void finalize() throws Throwable {
-        System.out.println("delete cat");
+    <span class="keyword">protected</span> <span class="keyword">void</span> finalize() <span class="keyword">throws</span> Throwable {
+        System.out.println(<span class="string">"delete dog"</span>);
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        Animal a = new Animal();
+<span class="keyword">class</span> <span class="class-name">Cat</span> <span class="keyword">extends</span> Animal {
+    <span class="keyword">public</span> Cat() {
+        System.out.println(<span class="string">"cat"</span>);
+    }
+
+    <span class="keyword">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        System.out.println(<span class="string">"cat meows"</span>);
+    }
+
+    <span class="keyword">protected</span> <span
+class="keyword">void</span> finalize() <span class="keyword">throws</span> Throwable {
+        System.out.println(<span class="string">"delete cat"</span>);
+    }
+}
+
+<span class="keyword">public class</span> <span class="class-name">Main</span> {
+    <span class="keyword">public static void</span> main(String[] args) {
+        Animal a = <span class="keyword">new</span> Animal();
         a.sound();
         
-        Dog d = new Dog();
+        Dog d = <span class="keyword">new</span> Dog();
         d.sound();
         
-        Cat c = new Cat();
+        Cat c = <span class="keyword">new</span> Cat();
         c.sound();
         
-        a = null;
-        d = null;
-        c = null;
+        a = <span class="keyword">null</span>;
+        d = <span class="keyword">null</span>;
+        c = <span class="keyword">null</span>;
         
-        System.gc(); // เรียก garbage collector เพื่อให้ finalize ทำงาน
+        <span class="keyword">System</span>.gc(); 
+        <span class="comment">// เรียก garbage collector เพื่อให้ finalize ทำงาน</span>
     }
 }
-</code>
-    </pre>
-    
+    </code></pre>
+
 </body>
 </html>
