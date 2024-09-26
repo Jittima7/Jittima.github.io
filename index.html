@@ -263,7 +263,8 @@ d.sound()
 c = Cat()
 c.sound()
 
-# Deleting objects explicitly (destructor will be called)
+<span class="comment">//Deleting objects explicitly (destructor will be called)</span>
+
 <span class="keyword">del</span> a
 <span class="keyword">del</span> d
 <span class="keyword">del</span> c
@@ -371,8 +372,48 @@ C++ ใช้คำสั่ง delete สำหรับการลบ object 
 Python มีระบบจัดการหน่วยความจำอัตโนมัติ แต่สามารถเรียกใช้ del เพื่อทำลาย object และให้ destructor ทำงาน</p1>
 </div>
       <h1> II. ส่วนประกอบของโค้ดเปรียบเทียบกับ concept ของ OOP</h1>
-          <p>การเปรียบเทียบโค้ดจากทั้งสามภาษา (Java, C++, Python) กับหลักการของ OOP (Object-Oriented Programming)</p>
 
+ <h2>1. Class</h2>
+    <p>
+  Class คือแม่แบบที่ใช้ในการสร้าง object ซึ่งกำหนดคุณสมบัติ (attribute) และพฤติกรรม (method) ของ object
+  ในโค้ดที่เราเขียน มีการสร้าง class Animal, Dog, และ Cat ซึ่งแต่ละ class มี attribute (constructor/destructor) และ method (เช่น sound())
+</p>
 
+<pre>
+<span class="keyword">class</span> <span class="class-name">Animal</span> {
+    <span class="keyword">public</span> <span class="keyword">void</span> sound() {
+        <span class="keyword">System.out.println</span>(<span class="string">"animal makes a sound"</span>);
+    }
+}
+</pre>
+  
+<h2>2. Object, instance</h2>
+    <p>
+Object คือสิ่งที่ถูกสร้างจาก class โดยแต่ละ object จะมีพฤติกรรมและคุณสมบัติที่ถูกกำหนดโดย class
+ในโค้ด มีการสร้าง object a จาก class Animal, object d จาก class Dog, และ object c จาก class Cat ซึ่งแต่ละ object มีพฤติกรรมตามที่กำหนดใน class นั้น ๆ
+</p>
+
+<pre>
+a = Animal()	<span class="comment"># a เป็น object ของ class Animal</span>
+d = Dog()	<span class="comment"># d เป็น object ของ class Dog</span>
+c = Cat()	<span class="comment"># c เป็น object ของ class Cat</span>
+</pre>
+
+  
+<h2>3. Subclass, derived class</h2>
+    <p>
+Subclass หรือ derived class คือ class ที่สืบทอดพฤติกรรมและคุณสมบัติจาก class อื่น (superclass) และสามารถเพิ่มหรือแก้ไขพฤติกรรมนั้นได้
+ในโค้ด Dog และ Cat เป็น subclass ของ Animal โดยใช้การสืบทอดคุณสมบัติและพฤติกรรมจาก Animal แต่ได้ override method sound() เพื่อให้พฤติกรรมแตกต่างกัน
+</p>
+
+<pre>
+<span class="class-name">class</span> <span class="class-name">Dog</span> <span class="keyword">:</span> <span class="keyword">public</span> <span class="class-name">Animal</span> {  <span class="comment">// Dog เป็น subclass ของ Animal</span>
+    <span class="keyword">void</span> sound() <span class="keyword">override</span> {
+        <span class="keyword">cout</span> << <span class="string">"dog barks"</span> << <span class="keyword">endl</span>;
+    }
+}
+</pre>
+  
+  
 </body>
 </html>
