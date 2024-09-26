@@ -67,7 +67,6 @@
         }
     </style>
 </head>
-    
 <body>
     <h1>I. เขียนโปรแกรมในภาษา Java, C++, Python เปรียบเทียบผลรัน</h1>
 
@@ -139,13 +138,13 @@ class="keyword">void</span> finalize() <span class="keyword">throws</span> Throw
         <span class="comment">// เรียก garbage collector เพื่อให้ finalize ทำงาน</span>
     }
 }
-</code></pre>
-    
-    <h2>2. C++</h2>
+    </code></pre>
+
+      <h2>2. C++</h2>
     <p>ใน C++ เราสามารถใช้ destructor (~ClassName) เพื่อจัดการหน่วยความจำได้
-    <code>#include <iostream>using namespace std;</code></p>
+<code>#include <iostream>using namespace std;</code></p>
   
-    <pre><code>
+      <pre><code>
 #include &lt;iostream&gt;
 <span class="keyword">using namespace</span> std;
 
@@ -210,9 +209,118 @@ public:
     
     <span class="keyword">return</span> 0;
 }
-    </code></pre>
+</code></pre>
 
+            <h2>3. Python</h2>
+    <p>ใน Python การใช้ constructor คือ __init__ และ destructor คือ __del__ ซึ่งจะถูกเรียกอัตโนมัติเมื่อ object ถูกทำลาย</p>
       
-      
+  
+  <pre><code>
+<span class="keyword">class</span> <span class="class-name">Animal</span>:
+    <span class="keyword">def</span> <span class="function-name">__init__</span>(self):
+        <span class="keyword">print</span>(<span class="string">"create animal"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">sound</span>(self):
+        <span class="keyword">print</span>(<span class="string">"animal makes a sound"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">__del__</span>(self):
+        <span class="keyword">print</span>(<span class="string">"delete animal"</span>)
+
+<span class="keyword">class</span> <span class="class-name">Dog</span>(<span class="class-name">Animal</span>):
+    <span class="keyword">def</span> <span class="function-name">__init__</span>(self):
+        <span class="keyword">super</span>().<span class="function-name">__init__</span>()
+        <span class="keyword">print</span>(<span class="string">"dog"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">sound</span>(self):
+        <span class="keyword">print</span>(<span class="string">"dog barks"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">__del__</span>(self):
+        <span class="keyword">print</span>(<span class="string">"delete dog"</span>)
+
+<span class="keyword">class</span> <span class="class-name">Cat</span>(<span class="class-name">Animal</span>):
+    <span class="keyword">def</span> <span class="function-name">__init__</span>(self):
+        <span class="keyword">super</span>().<span class="function-name">__init__</span>()
+        <span class="keyword">print</span>(<span class="string">"cat"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">sound</span>(self):
+        <span class="keyword">print</span>(<span class="string">"cat meows"</span>)
+    
+    <span class="keyword">def</span> <span class="function-name">__del__</span>(self):
+        <span class="keyword">print</span>(<span class="string">"delete cat"</span>)
+
+# Creating objects
+a = Animal()
+a.sound()
+
+d = Dog()
+d.sound()
+
+c = Cat()
+c.sound()
+
+# Deleting objects explicitly (destructor will be called)
+<span class="keyword">del</span> a
+<span class="keyword">del</span> d
+<span class="keyword">del</span> c
+</code></pre>
+
+<h2>ผลลัพธ์จากการรันโปรแกรมในแต่ละภาษา</h2>
+
+<h3>1. Java</h3>
+<p>เมื่อรันโปรแกรมใน Java โดยใช้ <code>System.gc()</code> เพื่อเรียก garbage collector และให้ <code>finalize()</code> ถูกเรียก จะได้ผลลัพธ์ดังนี้:</p>
+<pre><code>
+create animal
+animal makes a sound
+dog
+dog barks
+cat
+cat meows
+delete animal
+delete dog
+delete cat
+</code></pre>
+<p><strong>อธิบาย:</strong></p>
+
+   <p>create animal, dog, และ cat จะถูกพิมพ์เมื่อเรียก constructor ของแต่ละ class
+animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
+หลังจากใช้ System.gc() (เรียก garbage collector) โปรแกรมจะลบ object ที่ถูกสร้างออก ซึ่งจะทำให้ destructor (finalize) ทำงาน</p>
+
+<h3>2. C++</h3>
+<p>เมื่อรันโปรแกรมใน C++ โดยใช้คำสั่ง <code>delete</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
+<pre><code>
+create animal
+animal makes a sound
+dog
+dog barks
+cat
+cat meows
+delete animal
+delete dog
+delete cat
+</code></pre>
+<p><strong>อธิบาย:</strong></p>
+	<p>create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object ของแต่ละ class
+animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
+เมื่อทำลาย object ด้วย delete a, delete d, และ delete c destructor จะทำงาน และพิมพ์ข้อความที่เกี่ยวข้องกับการลบ object</p>
+
+<h3>3. Python</h3>
+<p>เมื่อรันโปรแกรมใน Python โดยใช้ <code>del</code> เพื่อทำลาย object จะได้ผลลัพธ์ดังนี้:</p>
+<pre><code>
+create animal
+animal makes a sound
+dog
+dog barks
+cat
+cat meows
+delete animal
+delete dog
+delete cat
+</code></pre>
+<p><strong>อธิบาย:</strong></p>
+	<p>create animal, dog, และ cat ถูกพิมพ์เมื่อสร้าง object แต่ละ class
+animal makes a sound, dog barks, และ cat meows ถูกพิมพ์เมื่อเรียกใช้ method sound()
+เมื่อทำลาย object ด้วย del a, del d, และ del c destructor จะถูกเรียก (__del__) ซึ่งทำให้พิมพ์ข้อความที่เกี่ยวข้องกับการลบ object</p>
+
+  
 </body>
 </html>
